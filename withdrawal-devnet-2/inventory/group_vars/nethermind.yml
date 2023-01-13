@@ -7,8 +7,7 @@ home_dir: "/home/{{ansible_user}}"
 
 el_github_external_user_pubkeys:
   - MarekM25
-  - avalonche
-  - DockBoss
+  - kamilchodola
   - LukaszRozmej
   - marcindsobczak
   - asdacap
