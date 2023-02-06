@@ -1,0 +1,20 @@
+- name: Start xatu sentry
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Start xatu sentry container
+      when:
+        - xatu_sentry_enabled | bool
+        - cl_client_name is defined
+        - el_client_name is defined
+      docker_container:
+        name: "{{ xatu_sentry_name }}"
+        state: started
+        image: "{{ xatu_sentry_image }}"
+        pull: true
+        restart_policy: unless-stopped
+        network_mode: host
+        restart: false
+        command: "sentry --config={{ xatu_sentry_host_dir }}/config.yaml"
+        log_options: "{{ common_log_options }}"
+        log_driver: "{{ common_log_driver }}"

@@ -84,6 +84,14 @@ snapsync_enabled: false
 ethstats_url: "example.io"
 ethstats_password: "example"
 
+xatu_sentry_enabled: true
+xatu_sentry_name: "xatu-sentry"
+xatu_sentry_image: "ethpandaops/xatu:0.0.19"
+xatu_sentry_host_dir: "{{home_dir}}/xatu/sentry"
+xatu_server_address: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/xatu-server-ingress-users/zhejiang.json | jq .server_address') }}"
+xatu_server_username: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/xatu-server-ingress-users/zhejiang.json | jq .username') }}"
+xatu_server_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/eth2/monitoring/observability-cluster/xatu-server-ingress-users/zhejiang.json | jq .password') }}"
+
 ##############################################
 # mev boost configs
 ##############################################

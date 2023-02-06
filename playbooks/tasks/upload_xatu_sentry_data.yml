@@ -1,0 +1,12 @@
+- name: Upload xatu sentry data
+  hosts: xatu
+  gather_facts: false
+  tasks:
+    - name: Creates xatu sentry dir
+      file:
+        path: "{{xatu_sentry_host_dir}}"
+        state: directory
+    - name: Template config
+      template:
+        src: "./templates/xatu/sentry/config.yaml"
+        dest: "{{xatu_sentry_host_dir}}/config.yaml"

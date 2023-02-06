@@ -1,0 +1,13 @@
+logging: "info"
+metricsAddr: ":9090"
+name:  "{{cl_network_name}}-{{cl_client_name}}-{{el_client_name}}-{{inventory_hostname}}"
+ethereum:
+  beaconNodeAddress: {{beacon_api_port}}
+outputs:
+- name: grpc
+  type: xatu
+  config:
+    address: {{xatu_server_address}}
+    tls: true
+    headers:
+      authorization: "Basic {{ (xatu_server_username + ":" + xatu_server_password) | b64encode }}"
