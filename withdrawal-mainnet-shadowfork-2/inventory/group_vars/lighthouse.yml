@@ -59,7 +59,9 @@ beacon_start_args: >
   --execution-endpoint={{execution_endpoint}}
   --suggested-fee-recipient={{fee_recipient}}
   --execution-jwt="/jwtsecret"
-
+  {% if mev_boost|bool is sameas true %}
+  --builder="{{mev_builder_endpoint}}"
+  {% endif %}
 # in case of eth1 deposit endpoint problems: --dummy-eth1
 
 validator_start_args: >
@@ -78,7 +80,9 @@ validator_start_args: >
   --http --http-port={{validator_rpc_port}}
   --metrics --metrics-address 0.0.0.0 --metrics-port "{{validator_metrics_port}}"
   --suggested-fee-recipient={{fee_recipient}}
-
+  {% if mev_boost|bool is sameas true %}
+  --builder-proposals
+  {% endif %}
 
 ##############################################
 # file permissions and user ids

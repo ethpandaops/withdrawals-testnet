@@ -1,0 +1,17 @@
+##############################################
+# generic relay info
+##############################################
+mock_relay_container_name: mock_relay
+mock_relay_image_name: parithoshj/mock-builder:v1.0.1
+mev_relay_require_restart: true
+mev_relay_port: 18550
+
+##############################################
+# specifies when to start invalid payloads from
+##############################################
+mock_relay_invalidate_epoch_from: 9999999
+mock_relay_invalidation_type: "parent_hash"
+##############################################
+# relay start arg
+##############################################
+mock_relay_start_args: "-port={{mev_relay_port}} -jwt-secret={{ jwt_secret.stdout }} -bid-multiplier=2 -invalidate-payload={{ mock_relay_invalidate_epoch_from }},{{mock_relay_invalidation_type}} -cl={{hostvars[groups['bootnode'][0]]['ansible_host']}}:{{beacon_api_port}} -el={{hostvars[groups['bootnode'][0]]['ansible_host']}}:{{el_engine_port}}"
