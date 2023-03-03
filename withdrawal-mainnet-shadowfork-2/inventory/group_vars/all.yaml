@@ -74,6 +74,15 @@ ethstats_url: "ethstats.withdrawal-mainnet-shadowfork-2.ethpandaops.io"
 ethstats_password: "withdrawalmainnetshadowfork2"
 
 ##############################################
+# mev boost configs
+##############################################
+mev_boost_image_name: flashbots/mev-boost:1.5.0-capella-alpha3-portable
+mev_boost_container_name: mev_boost
+mev_boost_start_args: "-zhejiang -relay-check -relays https://0xb23a28ab075ea0d76732c657bcd81fa3c4bc50831691fc30063bd9ce3b6181bc2c0f1828b32d465d91669d30d283315c@boost-relay-zhejiang.flashbots.net"
+mev_boost: true
+mev_builder_endpoint: "http://{{hostvars[groups['bootnode'][0]]['ansible_host']}}:{{mev_boost_port}}"
+
+##############################################
 # ports to configure
 ##############################################
 el_rpc_port: 8545
@@ -93,6 +102,7 @@ node_exporter_web_listen_address: "0.0.0.0:9100"
 prometheus_web_listen_address: "0.0.0.0:9101"
 el_metrics_port: 8002
 eth_metrics_exporter_port: 8003
+mev_boost_port: 18550
 
 ##############################################
 # Command for JSON RPC snooper
@@ -154,6 +164,7 @@ firewall_allowed_tcp_ports:
   - 9000
   - 80
   - 443
+  - 18550
 
 firewall_allowed_udp_ports:
   - 30303

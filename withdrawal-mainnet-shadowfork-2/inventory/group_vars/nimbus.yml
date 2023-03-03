@@ -65,7 +65,9 @@ beacon_start_args: >
   --jwt-secret=/jwtsecret
   --dump:on
   --history=prune
-
+  {% if mev_boost|bool is sameas true %}
+  --payload-builder=true --payload-builder-url="{{mev_builder_endpoint}}"
+  {% endif %}
 
 ##############################################
 # file permissions and user ids
