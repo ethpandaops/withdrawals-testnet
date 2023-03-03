@@ -9,7 +9,7 @@ mev_relay_port: 18550
 ##############################################
 # specifies when to start invalid payloads from
 ##############################################
-mock_relay_invalidate_epoch_from: 9999999
+mock_relay_invalidate_epoch_from: 2231
 mock_relay_invalidation_type: "parent_hash"
 ##############################################
 # relay start arg

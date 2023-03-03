@@ -26,7 +26,7 @@ el_start_args: >
   {% elif deploy_mode == 'shadowfork' %}
   --networkid={{chainID}}
   --syncmode=full
-  --override.shanghai=1680835260
+  --override.shanghai=1677843900
   {% endif %}
   --http --http.api "admin,engine,net,eth"
   --http.port {{el_rpc_port}}
