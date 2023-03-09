@@ -8,9 +8,15 @@ mev_relay_port: 18550
 
 ##############################################
 # specifies when to start invalid payloads from
+#     coinbase
+#    	base_fee
+#    	uncle_hash
+#    	receipt_hash
+#    	state_root
+#    	parent_hash
 ##############################################
 mock_relay_invalidate_epoch_from: 2231
-mock_relay_invalidation_type: "parent_hash"
+mock_relay_invalidation_type: "base_fee"
 ##############################################
 # relay start arg
 ##############################################
