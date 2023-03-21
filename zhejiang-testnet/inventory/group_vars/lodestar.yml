@@ -3,8 +3,8 @@
 ##############################################
 cl_client_name: lodestar
 
-beacon_image_name: g11tech/lodestar:cbuilder
-validator_image_name: g11tech/lodestar:cbuilder
+beacon_image_name: chainsafe/lodestar:next
+validator_image_name: chainsafe/lodestar:next
 
 beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 

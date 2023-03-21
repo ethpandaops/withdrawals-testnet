@@ -18,10 +18,10 @@ el_volumes:
   - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 geth_init_args: >
-  erigon --datadir=/eldata init /networkdata/genesis.json
+  init --datadir=/eldata /networkdata/genesis.json
 
 el_start_args: >
-  erigon --datadir=/eldata
+  --datadir=/eldata
   --networkid={{chainID}}
   --http --http.api "eth,erigon,engine,debug,trace,txpool,web3"
   --http.port {{el_rpc_port}}
