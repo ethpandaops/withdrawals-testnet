@@ -62,6 +62,10 @@ beacon_start_args: >
   --validator-keys="/validatordata/keys:/validatordata/secrets"
   --validators-keystore-locking-enabled=false
   {% endif %}
+  {% if mev_boost|bool is sameas true %}
+  --builder-endpoint="{{ mev_builder_endpoint }}"
+  --validators-builder-registration-default-enabled=true
+  {% endif %}
   --ee-jwt-secret-file="/jwtsecret"
   --log-destination=console
 

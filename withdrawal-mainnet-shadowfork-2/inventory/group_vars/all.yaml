@@ -47,11 +47,13 @@ bootnode_enrs:
   - "enr:-KG4QEl5VlbdInKnkscWtBRGFKoOec7V9ZTO7kM9QhLyK2fwcs03HfIvNvco5buZK2PngcbFbRNnK9jFjfcASNOOF6kDhGV0aDKQ3W49JUAAAEYQJwAAAAAAAIJpZIJ2NIJpcISf39fOiXNlY3AyNTZrMaECHbhTr9ROF0j3A7JDJQs-ujKTfUt9pjEUH2jPpFt4xRWDdGNwgiMog3VkcIIjKA"
   - "enr:-Ly4QFyykdn9Xv5LZ3R5WZ2CeDsfIsQx4aSrNvFxol7Pm4D7QWchFZzv8LUesA-Bh4LYdZWSVlm96Da7coHTHgY9QWMCh2F0dG5ldHOIAAAAAAAAAACEZXRoMpDdbj0lQAAARhAnAAAAAAAAgmlkgnY0gmlwhLI-1cWJc2VjcDI1NmsxoQNv1cnKOagw6fTXXlj4M3ToK2hM2dANfh2CVCrKHS1dRYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA"
   - "enr:-KG4QIZMcZvdua5-GEi6HfcWsijrGYglEbwQhWgHybrmQ_jfFP6p7tj6l_mnysizczSXVdp2e4wZtuKnCqGIioV9Nj0DhGV0aDKQ3W49JUAAAEYQJwAAAAAAAIJpZIJ2NIJpcISfQcrMiXNlY3AyNTZrMaECKoHsjPBCpoeBMWEc73pjzt4BNIhqMnhSQpWlzBRMRIuDdGNwgiMog3VkcIIjKA"
+  - "enr:-Ly4QOH44gxaVjPVpAPX-x1qMRaFZgL6rSX6CvW2R4wlWxK7OIAbFMrK8BLkF4LxNOjXE8iOWyLgCRJ4P7oEbiuoUEErh2F0dG5ldHOI__________-EZXRoMpDdbj0lQAAARqIIAAAAAAAAgmlkgnY0gmlwhI_GEvyJc2VjcDI1NmsxoQPJY21ETd6x7MXIktc0GqwlhiBsj8htP2GYfr1ik4y14YhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA"
 
 el_bootnode_enode:
   - "enode://7c9e4cb5a7175822f1967671b2da02beaf9894a5deba7fd33e9844a48231af8f86e919ccb4125252d0bb8e17724e23f48e085b4e0133c9d1cfc0f0d3a1e2e082@159.223.215.206:30303"
   - "enode://74decf14fed08c3feabe0bc8e6b04c9fbaffd3ce4759d3ab79a5fc66adee30f7c482e2a148f4aa72fc925a1b264a3d60c784173f57703a0c1684e838513faa4b@178.62.213.197:30303"
   - "enode://ba59f2aac20a05f7c33a2ed1251d7e90c06e15bde541a9422d81b9c73848eac70c2f4ec263db783bd4df4d5ee8583915bd79c2c3214afab2a8e78780ba07c3f5@159.65.202.204:30303"
+  - "enode://055c60cc2c9bcc0b49b2b0eea4a9fcc46e086245ccc399540b42f7b8fd90e4f872664d4ed6dc8ae2977a7205f40b8efe4c5445b2e6a47821a25e44859d43a767@143.198.18.252:30303"
 
 ##############################################
 # metric information
@@ -74,6 +76,15 @@ ethstats_url: "ethstats.withdrawal-mainnet-shadowfork-2.ethpandaops.io"
 ethstats_password: "withdrawalmainnetshadowfork2"
 
 ##############################################
+# mev boost configs
+##############################################
+mev_boost_image_name: flashbots/mev-boost:1.5.0-capella-alpha3-portable
+mev_boost_container_name: mev_boost
+mev_boost_start_args: "-zhejiang -relay-check -relays https://0xb23a28ab075ea0d76732c657bcd81fa3c4bc50831691fc30063bd9ce3b6181bc2c0f1828b32d465d91669d30d283315c@boost-relay-zhejiang.flashbots.net"
+mev_boost: true
+mev_builder_endpoint: "http://{{hostvars[groups['bootnode'][0]]['ansible_host']}}:{{mev_boost_port}}"
+
+##############################################
 # ports to configure
 ##############################################
 el_rpc_port: 8545
@@ -93,6 +104,7 @@ node_exporter_web_listen_address: "0.0.0.0:9100"
 prometheus_web_listen_address: "0.0.0.0:9101"
 el_metrics_port: 8002
 eth_metrics_exporter_port: 8003
+mev_boost_port: 18550
 
 ##############################################
 # Command for JSON RPC snooper
@@ -154,6 +166,7 @@ firewall_allowed_tcp_ports:
   - 9000
   - 80
   - 443
+  - 18550
 
 firewall_allowed_udp_ports:
   - 30303

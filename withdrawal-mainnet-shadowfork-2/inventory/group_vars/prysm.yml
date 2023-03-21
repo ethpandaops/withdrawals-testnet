@@ -68,7 +68,9 @@ beacon_start_args: >
   --enable-debug-rpc-endpoints
   --jwt-secret=/jwtsecret
   --suggested-fee-recipient={{ fee_recipient }}
-
+  {% if mev_boost is sameas true %}
+  --http-mev-relay="{{mev_builder_endpoint}}"
+  {% endif %}
 
 validator_start_args: >
   --accept-terms-of-use=true
@@ -84,7 +86,9 @@ validator_start_args: >
   --suggested-fee-recipient={{ fee_recipient }}
   --wallet-dir=/validatordata/wallet
   --wallet-password-file="/validatordata/wallet_pass.txt"
-
+  {% if mev_boost|bool is sameas true %}
+  --enable-builder
+  {% endif %}
 
 ##############################################
 # file permissions and user ids

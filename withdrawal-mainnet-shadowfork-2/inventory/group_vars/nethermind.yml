@@ -1,5 +1,5 @@
 el_client_name: nethermind
-el_image_name: nethermindeth/nethermind:withdrawals_gwei
+el_image_name: nethermind/nethermind:1.17.0
 execution_endpoint: http://127.0.0.1:{{el_engine_snoop_port}}
 snoop_command: "./json_rpc_snoop -p {{el_engine_snoop_port}} http://127.0.0.1:{{el_engine_port}}"
 

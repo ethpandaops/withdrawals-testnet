@@ -62,7 +62,9 @@ beacon_start_args: >
         --metrics.port={{ beacon_metrics_port }}
         --jwt-secret="/jwtsecret"
         --suggestedFeeRecipient={{fee_recipient}}
-
+        {% if mev_boost|bool is sameas true %}
+        --builder --builder.urls="{{mev_builder_endpoint}}"
+        {% endif %}
 
 validator_start_args: >
   validator
@@ -77,7 +79,9 @@ validator_start_args: >
    --server={{beacon_endpoint}}
    --graffiti={{graffiti}}
    --suggestedFeeRecipient={{fee_recipient}}
-
+   {% if mev_boost|bool is sameas true %}
+   --builder
+   {% endif %}
 
 ##############################################
 # memory limits

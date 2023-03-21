@@ -86,9 +86,9 @@ ethstats_password: "zhejiang"
 ##############################################
 # mev boost configs
 ##############################################
-mev_boost_image_name: flashbots/mev-boost:1.5.0-capella-alpha3-portable
+mev_boost_image_name: flashbots/mev-boost:1.5.0-alpha1-portable
 mev_boost_container_name: mev_boost
-mev_boost_start_args: "-zhejiang -relay-check -relays https://0xb23a28ab075ea0d76732c657bcd81fa3c4bc50831691fc30063bd9ce3b6181bc2c0f1828b32d465d91669d30d283315c@boost-relay-zhejiang.flashbots.net"
+mev_boost_start_args: "-zhejiang -relay-check -relays http://0x821f2a65afb70e7f2e820a925a9b4c80a159620582c1766b1b09729fec178b11ea22abb3a51f07b288be815a1a2ff516@bloxroute.builder.zhejiang.blxrbdn.com"
 mev_boost: true
 
 ##############################################
