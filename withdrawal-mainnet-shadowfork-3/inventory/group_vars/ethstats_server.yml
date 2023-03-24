@@ -1,0 +1,3 @@
+ethstats_image_name: skylenet/ethstats-server:poa-no-geoip
+ethstats_container_name: ethstats
+ethstats_secret: "{{ethstats_password}}"

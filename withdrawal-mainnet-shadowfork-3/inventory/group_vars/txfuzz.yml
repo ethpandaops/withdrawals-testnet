@@ -1,0 +1,8 @@
+txfuzz_container_name: tx-fuzz
+txfuzz_image_name: kurtosistech/tx-fuzz:0.2.1
+
+rpc_url: http://127.0.0.1:{{el_rpc_port}}
+txfuzz_private_key: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/verkle/verkle-txfuzz-key') }}"
+txfuzz_public_key: "0x2cA5F489CC1Fd1CEC24747B64E8dE0F4A6A850E1"
+
+txfuzz_start_args: "{{rpc_url}} spam {{txfuzz_private_key}} {{txfuzz_public_key}}"

@@ -1,0 +1,30 @@
+##############################################
+# generic faucet info
+##############################################
+faucet_node_dir: "{{home_dir}}/faucet_data"
+debug: false
+faucet_header: "{{cl_network_name}} FaucETH"
+
+##############################################
+# captcha info
+##############################################
+hcaptcha_site_key: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/verkle/verkle-hcaptcha-site-key') }}"
+hcaptcha_secret: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/verkle/verkle-hcaptcha-secret') }}"
+
+##############################################
+# faucet config
+##############################################
+# Pubkey for faucet: 0xe6d4d2f9e68eDc73A33EB97abCA432f304c2C438
+ether_to_transfer: 50000000000000000000
+faucet_rpc_url: https://rpc.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+faucet_private_key: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/withdrawals/withdrawal-faucet.key') }}"
+unit_name: "wheeETH"
+
+##############################################
+# faucet container info
+##############################################
+faucet_container_name: faucet
+faucet_image_name: skylenet/fauceth:fix_fee_estimation
+faucet_port: 8010
+faucet_volumes:
+  - "{{faucet_node_dir}}:/config"

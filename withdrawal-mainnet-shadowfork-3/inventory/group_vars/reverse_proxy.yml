@@ -1,0 +1,73 @@
+certificates:
+  rpc.withdrawal-mainnet-shadowfork-3.ethpandaops.io:
+    mode: http
+  withdrawal-mainnet-shadowfork-3.ethpandaops.io:
+    mode: http
+  faucet.withdrawal-mainnet-shadowfork-3.ethpandaops.io:
+    mode: http
+  explorer.withdrawal-mainnet-shadowfork-3.ethpandaops.io:
+    mode: http
+  ethstats.withdrawal-mainnet-shadowfork-3.ethpandaops.io:
+    mode: http
+  beaconchain.withdrawal-mainnet-shadowfork-3.ethpandaops.io:
+    mode: http
+  forkmon.withdrawal-mainnet-shadowfork-3.ethpandaops.io:
+    mode: http
+
+haproxy_frontends:
+  - name: host_msf3_rpc
+    address: rpc.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    backend: host_msf3_rpc
+  - name: host_msf3
+    address: withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    backend: host_msf3
+  - name: host_msf3_faucet
+    address: faucet.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    backend: host_msf3_faucet
+  - name: host_msf3_explorer
+    address: explorer.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    backend: host_msf3_explorer
+  - name: host_msf3_ethstats
+    address: ethstats.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    backend: host_msf3_ethstats
+  - name: host_msf3_beaconchain
+    address: beaconchain.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    backend: host_msf3_beaconchain
+  - name: host_msf3_forkmon
+    address: forkmon.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    backend: host_msf3_forkmon
+
+haproxy_backend_servers:
+  - name: host_msf3_rpc
+    address: 127.0.0.1:8545
+    options: 'check fall 3 rise 2'
+  - name: host_msf3
+    address: 127.0.0.1:1313
+    options: 'check fall 3 rise 2'
+  - name: host_msf3_faucet
+    address: 127.0.0.1:8010
+    options: 'check fall 3 rise 2'
+  - name: host_msf3_explorer
+    address: 127.0.0.1:3334
+    options: 'check fall 3 rise 2'
+  - name: host_msf3_ethstats
+    address: 127.0.0.1:3000
+    options: 'check fall 3 rise 2'
+  - name: host_msf3_beaconchain
+    address: 127.0.0.1:8080
+    options: 'check fall 3 rise 2'
+  - name: host_msf3_forkmon
+    address: 127.0.0.1:8181
+    options: 'check fall 3 rise 2'
+
+haproxy_stats_port: 8404
+haproxy_user: devops
+haproxy_group: devops
+haproxy_stats_user: devops
+haproxy_stats_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereum.devops/verkle/verkle-haproxy-key') }}"
+
+haproxy_default_backend_name: host_msf3
+grafana_prometheus_network_name: explorernet
+
+le_email: parithosh@ethereum.org
+debian_certbot: false

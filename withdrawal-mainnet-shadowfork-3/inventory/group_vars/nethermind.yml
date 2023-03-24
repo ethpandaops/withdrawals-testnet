@@ -1,0 +1,68 @@
+el_client_name: nethermind
+el_image_name: nethermind/nethermind:1.17.3
+execution_endpoint: http://127.0.0.1:{{el_engine_snoop_port}}
+snoop_command: "./json_rpc_snoop -p {{el_engine_snoop_port}} http://127.0.0.1:{{el_engine_port}}"
+
+home_dir: "/home/{{ansible_user}}"
+
+el_github_external_user_pubkeys:
+  - MarekM25
+  - avalonche
+  - DockBoss
+  - LukaszRozmej
+  - marcindsobczak
+  - asdacap
+  - rubo
+  - smartprogrammer93
+  - g11tech
+
+el_memory: 5000M
+el_kernel_memory: 5500M
+
+# websocket with upgrade
+elendpoint_ws: http://127.0.0.1:8546
+
+el_volumes:
+  - "{{el_node_dir}}:/eldata"
+  - "{{testnet_dir}}:/networkdata"
+  - "{{home_dir}}/jwtsecret:/jwtsecret"
+
+el_start_args: >
+  {% if deploy_mode == 'sync' %}
+  --config=mainnet
+  {% elif deploy_mode == 'shadowfork' %}
+  --Init.ChainSpecPath="/networkdata/chainspec.json"
+  --config=mainnet
+  --Merge.TerminalTotalDifficulty=58750000000000000000000
+  {% endif %}
+  --JsonRpc.MaxBatchSize 1000
+  --Sync.FastSync=true
+  --datadir="/eldata"
+  --Init.WebSocketsEnabled=true
+  --JsonRpc.Enabled=true
+  --JsonRpc.EnabledModules="net,eth,consensus,subscribe,web3,admin,txpool,debug,trace"
+  --JsonRpc.Port={{el_rpc_port}}
+  --JsonRpc.WebSocketsPort={{el_ws_rpc_port}}
+  --JsonRpc.Host=0.0.0.0
+  --Network.DiscoveryPort=30303
+  --Network.P2PPort=30303
+  --Init.DiagnosticMode="None"
+  --Init.IsMining=true
+  --JsonRpc.JwtSecretFile=/jwtsecret
+  {% if (el_bootnode_enode is defined) and el_bootnode_enode %}
+  --Discovery.Bootnodes="{{ el_bootnode_enode | join(',') }}"
+  {% endif %}
+  {% if (ethstats_enabled) %}
+  --EthStats.Enabled=true
+  --EthStats.Name={{inventory_hostname}}
+  --EthStats.Secret={{ethstats_password}}
+  --EthStats.Server=wss://{{ethstats_url}}/api/
+  {% endif %}
+  {% if (metrics_enabled) %}
+  --Metrics.ExposePort={{el_metrics_port}}
+  --Metrics.Enabled=true
+  {% endif %}
+
+
+# run as root, the nethermind image doesn't handle running regular user well
+el_user_id: "0:0"
