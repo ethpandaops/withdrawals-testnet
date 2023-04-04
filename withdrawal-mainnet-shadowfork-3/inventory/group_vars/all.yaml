@@ -33,20 +33,26 @@ beacon_api_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
 ##############################################
 # testnet specific information
 ##############################################
-testnet_type: mainnet
+testnet_type: custom
 cl_network_name: mainnet-shadowfork-3
-deploy_mode: sync
-no_validator_keys: true
+deploy_mode: shadowfork
+no_validator_keys: false
 checkpoint_sync_url: "https://mainnet-checkpoint-sync.attestant.io/"
 chainID: 1
 fee_recipient: "0xf97e180c050e5Ab072211Ad2C213Eb5AEE4DF134"
-upload_bls_keys: false
+upload_bls_keys: true
 # enter bootnodes here if needed
 bootnode_enrs:
   - "enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
+  - "enr:-KG4QOortwOofqaNzgWMaHh2bIzMu1I9rtuAUIMfwmw9klvDckvUNyKEVpOwdwcovD6mtIExuCZVRUZAHng_X8ja5EIDhGV0aDKQvGjKxkAAAEijAgAAAAAAAIJpZIJ2NIJpcISG0VahiXNlY3AyNTZrMaEDRYyn5q8xYPQHelasRsy1lBiMzTbWEu8B5ByAho7quWiDdGNwgiMog3VkcIIjKA"
+  - "enr:-Ly4QAKruQ5OOKLtUAav_5rMnF_8UnIYJh9g0oAcEpJCIyvuIxh3sO3IZ-ipdaeXYCPunXQoNox0T7Onur5CkJidW8MIh2F0dG5ldHOI__________-EZXRoMpC8aMrGQAAASKMCAAAAAAAAgmlkgnY0gmlwhKdj0Y6Jc2VjcDI1NmsxoQOeV1yUicjDG2YGayntXlmgyZMATEmxIUsSvMrN_ot3rYhzeW5jbmV0cw-DdGNwgiMog3VkcIIjKA"
+  - "enr:-L24QDzgBUOK3O6it1O8upVIptKnG_yS2IJ5E9ez_YGCcnf0aTYn-C8vbd-Ioq_IKVeUTG6K5wMo6RKpipKaHK6ibdqBhYdhdHRuZXRziAAAAAAAAAAAhGV0aDKQvGjKxkAAAEijAgAAAAAAAIJpZIJ2NIJpcISlFu8biXNlY3AyNTZrMaED34Ry39V1zXpudNN8ThDwqefZv49bMe0xtr3BSjYbzoaIc3luY25ldHMPg3RjcIIjKIN1ZHCCIyg"
 
 el_bootnode_enode:
   - "enode://7c9e4cb5a7175822f1967671b2da02beaf9894a5deba7fd33e9844a48231af8f86e919ccb4125252d0bb8e17724e23f48e085b4e0133c9d1cfc0f0d3a1e2e082@165.22.204.22:30303"
+  - "enode://9ad22971369366bfcd589f7dfe1cb308d5f1765ead81e7dad911ad0e5dbaa4b5ac4e87a6cac8e7e60524f9222e83a750ab30e0664a9d3158b8151ce735db4d0c@165.22.239.27:30303"
+  - "enode://f20741af2743d83e03d30c49801b19b0103db81667cd8482a428cb1807a790f78a6ed2045ac45694e84803c94b6e8e63a4fc151f7c676cace3d38fcd94e52c57@167.99.209.68:30303"
+  - "enode://4ebef8900c634a23b5c346fabc24d0def5dbc298352e2bb213eb31b89a2ba3a65da28d31f89ebcd295768b809c09da9ec85aadd37e0bff0852eaef8cf75ec7ff@157.245.75.159:30303"
 
 ##############################################
 # metric information
@@ -67,6 +73,15 @@ remote_write_password: "{{ lookup('pipe', 'keybase fs read /keybase/team/ethereu
 ethstats_enabled: true
 ethstats_url: "ethstats.withdrawal-mainnet-shadowfork-3.ethpandaops.io"
 ethstats_password: "withdrawalmainnetshadowfork3"
+
+##############################################
+# mev boost configs
+##############################################
+mev_boost_image_name: flashbots/mev-boost:1.5.2-alpha2
+mev_boost_container_name: mev_boost
+mev_boost_start_args: "-genesis-fork-version= -request-timeout-regval 15000 -relay-check -relays http://0xa869cb5a9b381f7195b5726a68f80820e7d8c57e8806c4bd1ca4b863ec01d5f5c340e0224ecbcd92edd28f01761bfcba@withdrawal-mainnet-shadowfork-3-prysm-geth-2.ethpandaops.io"
+# Set to false when you want to selectively enable mev-boost
+mev_boost: false
 
 ##############################################
 # ports to configure
@@ -150,6 +165,7 @@ firewall_allowed_tcp_ports:
   - 80
   - 443
   - 42069
+  - 4000
 
 firewall_allowed_udp_ports:
   - 30303

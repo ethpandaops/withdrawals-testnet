@@ -73,7 +73,6 @@ validator_start_args: >
   --validators-dir="/validatordata/validators"
   --secrets-dir="/validatordata/secrets"
   --init-slashing-protection
-  --server={{beacon_endpoint}}
   --graffiti="{{graffiti}}"
   --http --http-port={{validator_rpc_port}}
   --metrics --metrics-address 0.0.0.0 --metrics-port "{{validator_metrics_port}}"

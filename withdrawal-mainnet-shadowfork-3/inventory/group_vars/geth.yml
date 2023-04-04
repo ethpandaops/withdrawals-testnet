@@ -18,7 +18,11 @@ el_volumes:
   - "{{home_dir}}/jwtsecret:/jwtsecret"
 
 geth_init_args: >
-  --datadir=/eldata init /networkdata/genesis.json
+  --datadir=/eldata
+  {% if pebble_enabled|bool != true %}
+  --db.engine=pebble
+  {% endif %}
+  init /networkdata/genesis.json
 
 #  --networkid={{chainID}}
 el_start_args: >
@@ -28,7 +32,7 @@ el_start_args: >
   {% elif deploy_mode == 'shadowfork' %}
   --networkid={{chainID}}
   --syncmode=full
-  --override.shanghai=1674479676
+  --override.shanghai=1680782460
   {% endif %}
   --http --http.api "admin,engine,net,eth"
   --http.port {{el_rpc_port}}

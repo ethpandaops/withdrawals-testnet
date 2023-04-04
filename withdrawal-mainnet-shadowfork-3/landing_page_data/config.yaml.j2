@@ -1,0 +1,59 @@
+baseURL: https://withdrawal-mainnet-shadowfork-3.ethpandaops.io
+languageCode: en-us
+title: {{ cl_network_name }}
+theme: PaperMod
+
+markup:
+  highlight:
+    # anchorLineNos: true
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    # noClasses: false
+    style: monokai
+
+params:
+  disableThemeToggle: true
+  defaultTheme: dark
+  ethereum:
+    beaconexplorerUrl: https://beaconchain.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    ethstatsUrl: https://ethstats.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    forkmonUrl: https://forkmon.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    rpcUrl: https://rpc.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    explorerUrl: https://beaconchain.withdrawal-mainnet-shadowfork-3.ethpandaops.io
+    chainName: "{{cl_network_name}}"
+    chainId: "{{chainID}}"
+  metamask:
+    enabled: true
+
+  links:
+  - name: "Beaconchain explorer"
+    dataLookup: beaconexplorerUrl
+  - name: "Transaction explorer"
+    dataLookup: explorerUrl
+  - name: "Ethstats"
+    dataLookup: ethstatsUrl
+#  - name: "Consensus monitor"
+#    dataLookup: consensusmonitorUrl
+#  - name: "Faucet"
+#    dataLookup: faucetUrl
+  - name: "Forkmon"
+    dataLookup: forkmonUrl
+  - name: "JSON RPC"
+    dataLookup: rpcUrl
+
+  # additionalLinks:
+  # - name: "Launchpad"
+  #   url: "https://kiln.launchpad.ethereum.org"
+
+menu:
+  main:
+    - identifier: ethereum-website
+      name: ethereum.org
+      url: https://ethereum.org
+      weight: 30
+
+disableKinds: ["taxonomy", "taxonomyTerm"]
+
+copyright: "Long live the verge."
+

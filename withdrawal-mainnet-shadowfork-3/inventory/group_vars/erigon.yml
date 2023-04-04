@@ -29,7 +29,7 @@ el_start_args: >
   {% endif %}
   {% elif deploy_mode == 'shadowfork' %}
   --chain=mainnet
-  --override.shanghaiTime=1674479676
+  --override.shanghaiTime=1680782460
   {% if (el_bootnode_enode is defined) and el_bootnode_enode %}
   --nodiscover
   --staticpeers="{{ el_bootnode_enode | join(',') }}"
