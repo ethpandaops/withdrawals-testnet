@@ -51,6 +51,8 @@ el_start_args: >
   --batchSize=32m
   --torrent.port=42069
   --externalcl
+  --rpc.batch.limit 10000000 
+  --rpc.returndata.limit 1000000000
 
 #  --nodiscover
 #  --staticpeers="{{ el_bootnode_enode | join(',') }}"

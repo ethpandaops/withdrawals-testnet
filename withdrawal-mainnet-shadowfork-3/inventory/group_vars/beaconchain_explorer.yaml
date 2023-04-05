@@ -1,13 +1,13 @@
 #ansible_user: root
 
 beaconchain_explorer_remote_ethereum_node: "167.99.209.142"
-beaconchain_explorer_aio_docker_image_default: gobitfly/eth2-beaconchain-explorer@sha256:da6b00c016c5cf2bf7b40a2a251d853c9d3ea66f7fb4fb148262ebcd1f4dc604
+beaconchain_explorer_aio_docker_image_default: gobitfly/eth2-beaconchain-explorer:latest
 beaconchain_explorer_aio_url_erigon: http://{{ beaconchain_explorer_remote_ethereum_node }}:8545
 beaconchain_explorer_aio_url_erigon_ws: ws://{{ beaconchain_explorer_remote_ethereum_node }}:8545
 beaconchain_explorer_aio_url_geth: http://{{ beaconchain_explorer_remote_ethereum_node }}:8545
-
+beaconchain_explorer_aio_sql_init_file_url: https://raw.githubusercontent.com/gobitfly/eth2-beaconchain-explorer/master/db/migrations/20230330131622_init_database.sql
 beaconchain_explorer_aio_cleanup_all: false
-beaconchain_explorer_aio_bigtable_external_enabled: false
+beaconchain_explorer_aio_bigtable_external_enabled: false 
 
 beaconchain_frontend_config: |
   # All config options can be found in here: https://github.com/gobitfly/eth2-beaconchain-explorer/blob/master/types/config.go
@@ -22,6 +22,7 @@ beaconchain_frontend_config: |
     altairPath: "/custom_configs/phase0.yml"
     altairForkEpoch: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["ALTAIR_FORK_EPOCH"] }}
     configPath: "/custom_configs/phase0.yml"
+    genesisValidatorsRoot: 0x0
   readerDatabase:
     name: db
     host: beaconchain_postgres
@@ -79,7 +80,7 @@ beaconchain_frontend_config: |
     #fullIndexOnStartup: true
     #checkAllBlocksOnStartup: true
     node:
-      host: "http://134.209.92.245"
+      host: "134.209.92.245"
       port: '4000'
       type: lighthouse
     eth1DepositContractAddress: '{{ "%#x" % (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["DEPOSIT_CONTRACT_ADDRESS"] }}'
@@ -98,6 +99,7 @@ beaconchain_explorer_aio_config: |
     altairPath: "/custom_configs/phase0.yml"
     altairForkEpoch: {{ (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["ALTAIR_FORK_EPOCH"] }}
     configPath: "/custom_configs/phase0.yml"
+    genesisValidatorsRoot: 0x0
   readerDatabase:
     name: db
     host: beaconchain_postgres
@@ -156,7 +158,7 @@ beaconchain_explorer_aio_config: |
     fullIndexOnStartup: true
     #checkAllBlocksOnStartup: true
     node:
-      host: "http://134.209.92.245"
+      host: "134.209.92.245"
       port: '4000'
       type: lighthouse
       pageSize: 10000
