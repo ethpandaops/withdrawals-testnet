@@ -79,7 +79,7 @@ ethstats_password: "withdrawalmainnetshadowfork3"
 ##############################################
 mev_boost_image_name: flashbots/mev-boost:1.5.2-alpha2
 mev_boost_container_name: mev_boost
-mev_boost_start_args: "-genesis-fork-version= -request-timeout-regval 15000 -relay-check -relays http://0xa869cb5a9b381f7195b5726a68f80820e7d8c57e8806c4bd1ca4b863ec01d5f5c340e0224ecbcd92edd28f01761bfcba@withdrawal-mainnet-shadowfork-3-prysm-geth-2.ethpandaops.io"
+mev_boost_start_args: "-genesis-fork-version=0x10000048 -request-timeout-regval 15000 -relays http://0xa869cb5a9b381f7195b5726a68f80820e7d8c57e8806c4bd1ca4b863ec01d5f5c340e0224ecbcd92edd28f01761bfcba@withdrawal-mainnet-shadowfork-3-prysm-geth-2.ethpandaops.io"
 # Set to false when you want to selectively enable mev-boost
 mev_boost: false
 
@@ -103,6 +103,7 @@ node_exporter_web_listen_address: "0.0.0.0:9100"
 prometheus_web_listen_address: "0.0.0.0:9101"
 el_metrics_port: 8002
 eth_metrics_exporter_port: 8003
+mev_boost_port: 18550
 
 ##############################################
 # Command for JSON RPC snooper

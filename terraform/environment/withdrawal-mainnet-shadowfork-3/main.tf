@@ -176,12 +176,6 @@ variable "digitalocean_vm_groups" {
         "1" = {}
       }
     },
-    {
-      id = "lighthouse-erigon"
-      vms = {
-        "1" = { size = "so1_5-8vcpu-64gb" }
-      }
-    },
   ]
 }
 
@@ -291,5 +285,5 @@ resource "local_file" "ansible_inventory" {
       )
     }
   )
-  filename = "../../../${var.ethereum_network}/inventory/inventory.ini"
+  filename = "../../../${var.ethereum_network}/inventory/inventory_2.ini"
 }

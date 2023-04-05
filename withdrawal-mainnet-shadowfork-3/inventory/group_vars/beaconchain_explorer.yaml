@@ -1,12 +1,13 @@
 #ansible_user: root
 
-beaconchain_explorer_remote_ethereum_node: "withdrawal-mainnet-shadowfork-3-lighthouse-nethermind-1.ethpandaops.io"
-beaconchain_explorer_aio_docker_image_default: gobitfly/eth2-beaconchain-explorer:withdrawals
+beaconchain_explorer_remote_ethereum_node: "167.99.209.142"
+beaconchain_explorer_aio_docker_image_default: gobitfly/eth2-beaconchain-explorer@sha256:da6b00c016c5cf2bf7b40a2a251d853c9d3ea66f7fb4fb148262ebcd1f4dc604
 beaconchain_explorer_aio_url_erigon: http://{{ beaconchain_explorer_remote_ethereum_node }}:8545
-beaconchain_explorer_aio_url_erigon_ws: ws://{{ beaconchain_explorer_remote_ethereum_node }}:8546
+beaconchain_explorer_aio_url_erigon_ws: ws://{{ beaconchain_explorer_remote_ethereum_node }}:8545
 beaconchain_explorer_aio_url_geth: http://{{ beaconchain_explorer_remote_ethereum_node }}:8545
 
 beaconchain_explorer_aio_cleanup_all: false
+beaconchain_explorer_aio_bigtable_external_enabled: false
 
 beaconchain_frontend_config: |
   # All config options can be found in here: https://github.com/gobitfly/eth2-beaconchain-explorer/blob/master/types/config.go
@@ -78,7 +79,7 @@ beaconchain_frontend_config: |
     #fullIndexOnStartup: true
     #checkAllBlocksOnStartup: true
     node:
-      host: "{{beaconchain_explorer_remote_ethereum_node}}"
+      host: "http://134.209.92.245"
       port: '4000'
       type: lighthouse
     eth1DepositContractAddress: '{{ "%#x" % (beaconchain_explorer_aio_extra_config_files["phase0.yml"] | from_yaml)["DEPOSIT_CONTRACT_ADDRESS"] }}'
@@ -155,7 +156,7 @@ beaconchain_explorer_aio_config: |
     fullIndexOnStartup: true
     #checkAllBlocksOnStartup: true
     node:
-      host: "{{beaconchain_explorer_remote_ethereum_node}}"
+      host: "http://134.209.92.245"
       port: '4000'
       type: lighthouse
       pageSize: 10000
@@ -201,6 +202,9 @@ beaconchain_explorer_aio_cl_config_extra: |
   SHUFFLE_ROUND_COUNT: 90
   HYSTERESIS_QUOTIENT: 4
   SLOTS_PER_EPOCH: 32
+  MAX_BLS_TO_EXECUTION_CHANGES: 16
+  MAX_WITHDRAWALS_PER_PAYLOAD: 16
+  MAX_VALIDATORS_PER_WITHDRAWALS_SWEEP: 16384
 
 beaconchain_explorer_aio_extra_config_files:
   phase0.yml: |
