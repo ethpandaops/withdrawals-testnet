@@ -68,6 +68,7 @@ beacon_start_args: >
   --enable-debug-rpc-endpoints
   --jwt-secret=/jwtsecret
   --suggested-fee-recipient={{ fee_recipient }}
+  --grpc-max-msg-size=8388608
   {% if mev_boost|bool is sameas true %}
   --http-mev-relay="http://127.0.0.1:{{mev_boost_port}}"
   {% endif %}
@@ -86,6 +87,7 @@ validator_start_args: >
   --suggested-fee-recipient={{ fee_recipient }}
   --wallet-dir=/validatordata/wallet
   --wallet-password-file="/validatordata/wallet_pass.txt"
+  --grpc-max-msg-size=8388608
   {% if mev_boost|bool is sameas true %}
   --enable-builder
   {% endif %}

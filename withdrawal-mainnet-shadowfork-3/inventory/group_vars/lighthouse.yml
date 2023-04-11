@@ -59,6 +59,8 @@ beacon_start_args: >
   --execution-endpoint={{execution_endpoint}}
   --suggested-fee-recipient={{fee_recipient}}
   --execution-jwt="/jwtsecret"
+  --always-prepare-payload
+  --prepare-payload-lookahead=12000
   {% if mev_boost|bool is sameas true %}
   --builder="http://127.0.0.1:{{mev_boost_port}}"
   {% endif %}

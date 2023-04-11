@@ -102,13 +102,6 @@ variable "digitalocean_vm_groups" {
       },
     },
     {
-      id = "teku-geth"
-      vms = {
-        "1" = { region = "nyc3" }
-        "2" = { region = "blr1" }
-      },
-    },
-    {
       id = "teku-nethermind"
       vms = {
         "1" = {}
@@ -124,12 +117,6 @@ variable "digitalocean_vm_groups" {
       id = "nimbus-besu"
       vms = {
         "1" = {}
-      },
-    },
-    {
-      id = "nimbus-geth"
-      vms = {
-        "1" = { region = "nyc3" }
       },
     },
     {
@@ -166,7 +153,6 @@ variable "digitalocean_vm_groups" {
     {
       id = "lighthouse-geth"
       vms = {
-        "1" = { region = "tor1" }
         "2" = { region = "tor1" }
       },
     },

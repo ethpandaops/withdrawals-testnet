@@ -5,7 +5,7 @@ cl_client_name: lodestar
 
 beacon_image_name: chainsafe/lodestar:v1.7.2
 validator_image_name: chainsafe/lodestar:v1.7.2
-beacon_endpoint: "http://127.0.0.1:{{beacon_api_port}}"
+beacon_endpoint: "http://167.99.213.102:{{beacon_api_port}}"
 
 cl_github_external_user_pubkeys:
   - dapplion
@@ -62,7 +62,9 @@ beacon_start_args: >
         --metrics.port={{ beacon_metrics_port }}
         --jwt-secret="/jwtsecret"
         --suggestedFeeRecipient={{fee_recipient}}
-
+        {% if mev_boost|bool is sameas true %}
+        --builder --builder.urls="http://127.0.0.1:{{mev_boost_port}}"
+        {% endif %}
 
 validator_start_args: >
   validator
@@ -77,7 +79,9 @@ validator_start_args: >
    --server={{beacon_endpoint}}
    --graffiti={{graffiti}}
    --suggestedFeeRecipient={{fee_recipient}}
-
+  {% if mev_boost|bool is sameas true %}
+  --builder
+  {% endif %}
 
 ##############################################
 # memory limits
