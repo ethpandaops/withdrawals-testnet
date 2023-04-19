@@ -1,3 +1,9 @@
+# THIS REPOSITORY IS NOW ARCHIVED. SHAPELLA WAS MERGED TO MAINNET ON AT EPOCH 194048.
+# FOR FUTURE DEVNETS AND PUBLIC TESTNETS REFER TO OUR OTHER REPOSITORIES: 
+  https://github.com/ethpandaops/4844-testnet
+  https://github.com/ethpandaops/verkle-testnet
+  https://github.com/ethpandaops/deposit-devnets
+
 # Minimal ansible for Ethereum Testnets
 
 This repository is a minimal set of playbooks and inventories required to set up a Consensus Layer(CL) node and a Execution
