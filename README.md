@@ -1,8 +1,8 @@
 # THIS REPOSITORY IS NOW ARCHIVED. SHAPELLA WAS MERGED TO MAINNET ON AT EPOCH 194048.
 # FOR FUTURE DEVNETS AND PUBLIC TESTNETS REFER TO OUR OTHER REPOSITORIES: 
-  https://github.com/ethpandaops/4844-testnet
-  https://github.com/ethpandaops/verkle-testnet
-  https://github.com/ethpandaops/deposit-devnets
+- https://github.com/ethpandaops/4844-testnet
+- https://github.com/ethpandaops/verkle-testnet
+- https://github.com/ethpandaops/deposit-devnets
 
 # Minimal ansible for Ethereum Testnets
 
